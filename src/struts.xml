@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<!-- 全局常量配置 -->
+	<!-- 动态方法调用开关 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- 开发者模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 设置Struts上下文统一编码 -->
+    <constant name="struts.i18n.encoding" value="utf-8" />
+    <!--action的创建权交由spring  -->
+    <constant name="struts.objectFactory" value="spring" />
+
+    <package name="default" namespace="/" extends="json-default">
+    	<!-- 用户登录 -->
+		<action name="login" class="useraction" method="doLogin">
+			<result type="json">
+				<param name="includeProperties">msg</param>
+			</result>
+		</action>
+		<!-- 显示所有账单 -->
+		<action name="login" class="useraction" method="doLogin">
+			<result type="json">
+				<param name="includeProperties"></param>
+			</result>
+		</action>
+		<!-- 显示所有用户 -->
+		<action name="showAllUser" class="useraction" method="showAllUser">
+			<result type="json">
+				<param name="includeProperties">list.*</param>
+			</result>
+		</action>
+		<!--查询用户 -->
+		<action name="findUser" class="useraction" method="findUserName">
+			<result type="json">
+				<param name="includeProperties">list.*</param>
+			</result>
+		</action>
+		<!--修改用户 -->
+		<action name="update" class="useraction" method="updateUser">
+				<result name="success">/userAdmin.jsp</result>
+		</action>
+		<!--通过id查询用户 -->
+		<action name="update" class="useraction" method="findById">
+				<result name="success" >/userModify.jsp</result>
+				<!-- <result name="input" >/index.jsp</result> -->	
+		</action>
+		
+		<!--添加用户 -->
+		<action name="regist" class="useraction" method="addUser">
+			<result name="success">/userAdmin.jsp</result>
+		</action>
+		
+    </package>
+</struts>
